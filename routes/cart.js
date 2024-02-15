@@ -64,6 +64,9 @@ router.post("/addtocart",fetchuser,async(req,res)=>{
 
 router.get("/cart",fetchuser,async(req,res)=>{
   let result = await Cart.findOne({user:req.user._id});
+   if(!result){
+    return res.send({result:"empty cart"})
+  }
   let x = result.products;
   let y =[];
   let z;
